@@ -5,6 +5,8 @@
  */
 package com.mycompany.bsu_rfms;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author mheru
@@ -93,7 +95,11 @@ public class rf_watermark extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new rf_watermark().setVisible(true);
+                
+                JFrame rfw = new rf_watermark();
+                rfw.setLocationRelativeTo(null);
+                rfw.setVisible(true);
+                
             }
         });
     }
