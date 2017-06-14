@@ -179,15 +179,11 @@ public class rf_login extends javax.swing.JFrame {
             pass_len = jtf_password.getText().length();
         }
         
-        if (pass_len != 0) {
-            for (byte cnt = 0; cnt < pass_len; cnt++) {
-                pass_char = new StringBuilder().append(pass_char).append("*").toString();
-            }
-        
-            jtf_password.setText(pass_char);
-        } else {
-            jtf_password.setText("");
+        for (byte cnt = 0; cnt < pass_len; cnt++) {
+            pass_char = new StringBuilder().append(pass_char).append("*").toString();
         }
+
+        jtf_password.setText(pass_char);
 
         if (login_pass.trim().isEmpty()) {
             System.out.println("@@@@ NO PASSWORD");
