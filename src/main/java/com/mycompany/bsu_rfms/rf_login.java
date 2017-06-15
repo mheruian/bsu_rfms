@@ -158,25 +158,53 @@ public class rf_login extends javax.swing.JFrame {
         boolean keyallow = false;
         int pass_len = 0;
         
-        System.out.println("@@@@ bool " + keyallow);
+        System.out.println("@@@@ boolean1 " + keyallow);
         
-        if (jtf_password.getText().trim().isEmpty()) {
+        // login pass = 
+        if (login_pass.trim().isEmpty()) {
             if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-                if (login_pass.trim().isEmpty()) {
+                evt.consume();
+                System.out.println("@@@@ login password empty");
+                
+            } else {
+                keyallow = true;
+                
+            }
+            
+        // login pass = h
+        } else {
+            System.out.println("@@@@ login password NOT empty");
+            
+            if (jtf_password.getText().trim().isEmpty()) {
+                
+                System.out.println("@@@@ field is empty");
+                if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
                     evt.consume();
+                    System.out.println("@@@@ backspaced - consumed"); 
+                    
                 } else {
                     keyallow = true;
+                    System.out.println("@@@@ backspaced");
+                    
                 }
             } else {
                 keyallow = true;
+                
             }
-        } else {
-            keyallow = true;
+            
         }
         
+        System.out.println("@@@@ boolean2 " + keyallow);
         if (keyallow) {
             login_pass = new StringBuilder().append(login_pass).append(evt.getKeyChar()).toString(); 
             pass_len = jtf_password.getText().length();
+            System.out.println("@@@@ allowed");
+            
+        } else if (!login_pass.trim().isEmpty()) {
+            login_pass = ""; 
+            pass_len = 0;
+            System.out.println("@@@@ cleared");
+            
         }
         
         for (byte cnt = 0; cnt < pass_len; cnt++) {
