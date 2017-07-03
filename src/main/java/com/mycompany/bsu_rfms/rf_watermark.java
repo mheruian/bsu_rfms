@@ -7,6 +7,7 @@ package com.mycompany.bsu_rfms;
 public class rf_watermark extends javax.swing.JPanel {
 
     public rf_watermark() {
+        setSize(480,330);
         initComponents();
     }
 

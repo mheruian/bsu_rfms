@@ -1,6 +1,8 @@
 package com.mycompany.bsu_rfms;
 
 import java.awt.BorderLayout;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,7 +12,10 @@ import javax.swing.JPanel;
  */
 public final class rf_base extends javax.swing.JFrame {
     
+    private static rf_base rfb;
+    
     public rf_base() {
+        add(new rf_watermark());
         initComponents();
     }
     
@@ -63,7 +68,10 @@ public final class rf_base extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new rf_base().setVisible(true);
+                rfb = new rf_base();
+                rfb.setSize(480, 330);
+                rfb.setVisible(true);
+
             }
         });
     }
