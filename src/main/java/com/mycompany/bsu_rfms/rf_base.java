@@ -8,6 +8,7 @@ public final class rf_base extends javax.swing.JFrame {
         //add(new rf_watermark(480, 330));
         add(new rf_login(570, 260));
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     public rf_base(int[] size) {
@@ -21,12 +22,14 @@ public final class rf_base extends javax.swing.JFrame {
         rfb = new rf_base();
         rfb.setSize(w, h);
         rfb.setVisible(true);
+        rfb.requestFocus();
     }
     
     public static void basePanel(int[] size) {
         rfb = new rf_base(size);
         rfb.setSize(size[0], size[1]);
         rfb.setVisible(true);
+        rfb.requestFocus();
     }
     
     
