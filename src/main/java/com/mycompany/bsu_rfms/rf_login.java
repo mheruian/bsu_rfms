@@ -15,11 +15,13 @@ public class rf_login extends javax.swing.JPanel {
     public rf_login(int w , int h) {
         setSize(w, h);
         initComponents();
+        jb_login.requestFocus();
     }
     
     public rf_login(int[] size) {
         setSize(size[0], size[1]);
         initComponents();
+        jb_login.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -219,10 +221,7 @@ public class rf_login extends javax.swing.JPanel {
     }//GEN-LAST:event_jb_registerActionPerformed
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        jtf_password.setFocusable(false);
-        jtf_username.setFocusable(false);
-        jb_login.setFocusable(false);
-        jb_register.setFocusable(false);
+
     }//GEN-LAST:event_formMouseClicked
 
 
