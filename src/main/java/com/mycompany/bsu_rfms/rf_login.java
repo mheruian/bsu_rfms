@@ -1,22 +1,18 @@
 package com.mycompany.bsu_rfms;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class rf_login extends javax.swing.JFrame {
+public class rf_login extends javax.swing.JPanel {
 
     private String login_pass = "";
-    private static JFrame jframe_login;
     
     public rf_login() {
         initComponents();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -30,12 +26,7 @@ public class rf_login extends javax.swing.JFrame {
         jb_register = new javax.swing.JButton();
         jtf_password = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
+        setPreferredSize(new java.awt.Dimension(401, 262));
 
         jlbl_header1.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
         jlbl_header1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -82,8 +73,8 @@ public class rf_login extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -116,80 +107,60 @@ public class rf_login extends javax.swing.JFrame {
                     .addComponent(jb_register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtf_usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtf_usernameFocusGained
         if (jtf_username.getText().equals("Enter your username here")) {
-            jtf_username.setText("");    
+            jtf_username.setText("");
             jtf_username.setForeground(Color.black);
         }
-
     }//GEN-LAST:event_jtf_usernameFocusGained
 
     private void jtf_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtf_usernameFocusLost
         if (jtf_username.getText().equals("")) {
-            jtf_username.setText("Enter your username here"); 
+            jtf_username.setText("Enter your username here");
             jtf_username.setForeground(Color.gray);
         }
-
     }//GEN-LAST:event_jtf_usernameFocusLost
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        
-        jframe_login.requestFocus();
-        if (jtf_password.getText().equals("")) {
-            jtf_password.setEchoChar((char)0);
-            jtf_password.setText("Enter your password here");
-            jtf_password.setForeground(Color.gray);
-        }
-        
-        if (jtf_username.getText().equals("Enter your username here")) {
-            jtf_username.setText("Enter your username here");
-            jtf_password.setForeground(Color.gray);            
-        }
-        
-    }//GEN-LAST:event_formMouseClicked
-
     private void jb_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_loginMouseClicked
-        
+
         login_pass = jtf_password.getText();
         boolean valid_access = false;
         ResultSet resultset = null;
         Connection connection = null;
         Statement statement = null;
         String query = "SELECT * FROM `users_table` WHERE "
-                + "`users-name`='" + jtf_username.getText() + "' and "
-                + "`users-password`='" + login_pass + "'";
-        
+        + "`users-name`='" + jtf_username.getText() + "' and "
+        + "`users-password`='" + login_pass + "'";
+
         try {
             connection = rf_dbconnection.getConnection();
-            
+
             statement = connection.createStatement();
             resultset = statement.executeQuery(query);
-            
+
             while (resultset.next()) {
-                if (jtf_username.getText().equals(resultset.getString("users-name")) 
-                        && login_pass.equals(resultset.getString("users-password"))) {
+                if (jtf_username.getText().equals(resultset.getString("users-name"))
+                    && login_pass.equals(resultset.getString("users-password"))) {
                     valid_access = true;
                     break;
                 }
             }
-            
+
             if (valid_access) {
-                JOptionPane.showMessageDialog(null, "Good Day Mr/Mrs. " + resultset.getString("users-fullname") + "!", 
-                        "Login Successed", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Good Day Mr/Mrs. " + resultset.getString("users-fullname") + "!",
+                    "Login Successed", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid username/password!", 
-                        "Login Failed", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid username/password!",
+                    "Login Failed", JOptionPane.WARNING_MESSAGE);
             }
-            
+
         } catch (SQLException sqlx) {
             sqlx.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Database exception error. Kindly contact System Administrator to address concern.", 
-                        "System Error #101", JOptionPane.ERROR_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, "Database exception error. Kindly contact System Administrator to address concern.",
+                "System Error #101", JOptionPane.ERROR_MESSAGE);
+
         } finally {
             if (connection != null) {
                 try {
@@ -199,14 +170,14 @@ public class rf_login extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         System.out.println(login_pass);
-        
+
     }//GEN-LAST:event_jb_loginMouseClicked
 
     private void jtf_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtf_passwordFocusGained
         if (jtf_password.getText().equals("Enter your password here")) {
-            jtf_password.setText("");    
+            jtf_password.setText("");
             jtf_password.setForeground(Color.black);
             jtf_password.setEchoChar('*');
         }
@@ -215,47 +186,11 @@ public class rf_login extends javax.swing.JFrame {
     private void jtf_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtf_passwordFocusLost
         if (jtf_password.getText().equals("")) {
             jtf_password.setEchoChar((char)0);
-            jtf_password.setText("Enter your password here"); 
+            jtf_password.setText("Enter your password here");
             jtf_password.setForeground(Color.gray);
         }
     }//GEN-LAST:event_jtf_passwordFocusLost
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(rf_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(rf_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(rf_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(rf_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                jframe_login = new rf_login();
-                jframe_login.setTitle("RF Monitoring System");
-                jframe_login.setVisible(true);
-                jframe_login.setLocationRelativeTo(null);
-                jframe_login.requestFocus();
-                
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jb_login;
