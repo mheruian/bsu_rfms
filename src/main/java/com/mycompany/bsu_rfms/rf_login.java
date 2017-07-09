@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 public class rf_login extends javax.swing.JPanel {
 
     private String login_pass = "";
-    private rf_login rfl;
     
     public rf_login(int w , int h) {
         setSize(w, h);
