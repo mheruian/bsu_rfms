@@ -1,24 +1,33 @@
 package com.mycompany.bsu_rfms;
 
-import java.awt.BorderLayout;
-import static java.awt.image.ImageObserver.HEIGHT;
-import static java.awt.image.ImageObserver.WIDTH;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-/**
- *
- * @author mheru
- */
 public final class rf_base extends javax.swing.JFrame {
     
     private static rf_base rfb;
     
     public rf_base() {
-        add(new rf_watermark());
+        //add(new rf_watermark(480, 330));
+        add(new rf_login(570, 260));
         initComponents();
     }
     
+    public rf_base(int[] size) {
+        //add(new rf_watermark(size[0], size[1]));
+        add(new rf_login(size[0], size[1]));
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public static void basePanel(int w, int h) {
+        rfb = new rf_base();
+        rfb.setSize(w, h);
+        rfb.setVisible(true);
+    }
+    
+    public static void basePanel(int[] size) {
+        rfb = new rf_base(size);
+        rfb.setSize(size[0], size[1]);
+        rfb.setVisible(true);
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -68,10 +77,10 @@ public final class rf_base extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                rfb = new rf_base();
-                rfb.setSize(480, 330);
-                rfb.setVisible(true);
-
+                //basePanel(480, 330);                    //<-- watermark
+                //basePanel(570, 260);                    //<-- login
+                //basePanel(rf_elements.watermarkSize);   //<-- watermark
+                basePanel(rf_elements.loginSize);       //<-- login
             }
         });
     }

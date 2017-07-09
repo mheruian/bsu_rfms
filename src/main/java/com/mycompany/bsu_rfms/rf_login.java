@@ -10,8 +10,15 @@ import javax.swing.JOptionPane;
 public class rf_login extends javax.swing.JPanel {
 
     private String login_pass = "";
+    private rf_login rfl;
     
-    public rf_login() {
+    public rf_login(int w , int h) {
+        setSize(w, h);
+        initComponents();
+    }
+    
+    public rf_login(int[] size) {
+        setSize(size[0], size[1]);
         initComponents();
     }
 
@@ -26,19 +33,28 @@ public class rf_login extends javax.swing.JPanel {
         jb_register = new javax.swing.JButton();
         jtf_password = new javax.swing.JPasswordField();
 
-        setPreferredSize(new java.awt.Dimension(401, 262));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(400, 260));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jlbl_header1.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
         jlbl_header1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbl_header1.setText("RF Monitoring");
+        jlbl_header1.setPreferredSize(new java.awt.Dimension(222, 58));
 
         jlbl_header2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         jlbl_header2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbl_header2.setText("System for Radio Stations");
+        jlbl_header2.setMinimumSize(new java.awt.Dimension(222, 29));
 
         jtf_username.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
         jtf_username.setForeground(new java.awt.Color(153, 153, 153));
         jtf_username.setText("Enter your username here");
+        jtf_username.setPreferredSize(new java.awt.Dimension(222, 28));
         jtf_username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtf_usernameFocusGained(evt);
@@ -50,6 +66,7 @@ public class rf_login extends javax.swing.JPanel {
 
         jb_login.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
         jb_login.setText("Login");
+        jb_login.setMinimumSize(new java.awt.Dimension(102, 31));
         jb_login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_loginMouseClicked(evt);
@@ -58,6 +75,12 @@ public class rf_login extends javax.swing.JPanel {
 
         jb_register.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
         jb_register.setText("Register");
+        jb_register.setMinimumSize(new java.awt.Dimension(102, 31));
+        jb_register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_registerActionPerformed(evt);
+            }
+        });
 
         jtf_password.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
         jtf_password.setForeground(new java.awt.Color(153, 153, 153));
@@ -77,35 +100,35 @@ public class rf_login extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jtf_password, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(jlbl_header2, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(jtf_username, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtf_password, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jb_login, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jb_register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jlbl_header1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-                .addGap(84, 84, 84))
+                        .addComponent(jb_register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlbl_header1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlbl_header2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jlbl_header1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jlbl_header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_header2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtf_password)
+                .addComponent(jtf_password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jb_login, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jb_register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                    .addComponent(jb_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,6 +213,17 @@ public class rf_login extends javax.swing.JPanel {
             jtf_password.setForeground(Color.gray);
         }
     }//GEN-LAST:event_jtf_passwordFocusLost
+
+    private void jb_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_registerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_registerActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        jtf_password.setFocusable(false);
+        jtf_username.setFocusable(false);
+        jb_login.setFocusable(false);
+        jb_register.setFocusable(false);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

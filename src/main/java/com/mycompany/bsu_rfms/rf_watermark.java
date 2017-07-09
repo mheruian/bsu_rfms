@@ -1,13 +1,14 @@
 package com.mycompany.bsu_rfms;
 
-/**
- *
- * @author mheru
- */
 public class rf_watermark extends javax.swing.JPanel {
 
-    public rf_watermark() {
-        setSize(480,330);
+    public rf_watermark(int w, int h) {
+        setSize(w, h);
+        initComponents();
+    }
+    
+    public rf_watermark(int[] size) {
+        setSize(size[0], size[1]);
         initComponents();
     }
 
